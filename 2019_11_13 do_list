@@ -13,6 +13,7 @@
 
 <프로젝트 프로그램 설명>
 
+
 <GITHUB Address>
 https://github.com/cwc06129/prim-
 
@@ -35,3 +36,4 @@ https://github.com/cwc06129/prim-
 - 생명count == 0일 경우, 화면 중앙에 fail띄우기(빨간색으로), 초기화면으로 back
 
 <프로젝트 마일스톤>
+
