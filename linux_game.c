@@ -1,3 +1,9 @@
+/*
+2018110881 정소희
+2017115991 김미정
+2018112842 이단비
+*/
+
 #include <stdio.h>
 #include <curses.h>
 #include <unistd.h>
