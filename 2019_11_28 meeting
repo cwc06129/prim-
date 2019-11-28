@@ -1,0 +1,40 @@
+<선정주제>
+교수님과의 chatting program
+- 교수님과의 chatting program을 socket을 이용해서 구현한다.
+- 추가기능 : chatting 내용을 배열과 같은 저장공간에 저장한다.
+- 추가기능 : client들도 서로의 대화 내용이 창에 뜨도록 구현한다.
+- 추가기능 : 로그인 기능을 만들어서 닉네임을 사용하도록 한다.(익명성 보장?)
+- 추가기능 : lms 기능과의 차이는 수업 중에 실시간으로 질문(시스템)과 답변(마우스)로 할 수 있고, 수업에 대한 피드백도 가능하다.
+
+<주요 기능 구현>
+1. 교수님과 학생의 1:多 관계의 소통이 가능해야 한다.
+- 교수님(server)의 채팅창에 학생(client)들이 여러명 한 번에 접속할 수 있어야 한다.
+- 학생들의 화면에도 다른 학생들의 질문 내용이 출력되어야 한다.
+- 닉네임 사용 여부는 학생들이 설정할 수 있으며, 사용을 원하지 않는 학생은 server에서 임의의 사용자명을 설정한다.
+2. 채팅내용을 text file에 저장할 수 있다.
+
+<참고사이트>
+http://kieuns.com/doku.php?id=os:linux:cygwin-%ED%95%9C%EA%B8%80-%EC%84%A4%EC%A0%95 - linux 한글 설정
+https://crazythink.github.io/2018/05/25/socketchat/ - linux 채팅 프로그램
+
+<유용한 정보>
+1) hostname -I : 개인의 IP주소를 찾는다.
+server에서 port number를 부여해주고, client에서 server의 ip address와 server에서 부여한 port number로 해당 server의 채팅 프로그램으로 들어간다.
+본인의 채팅프로그램으로 들어가려면 ip address를 127.0.0.1로 하고, 본인이 부여한 port numberd를 입력하면 된다.
+
+2) recv함수
+flags - 읽을 데이터 유형 또는 읽는 방법에 대한 option 
+MSG_OOB : out of band(긴급데이터) 데이터를 읽습니다. 주로 X.25에서 접속이 끊겼을 때에 전송되는 데이터 
+MSG_PEEK : receive queue의 데이터를 queue에서 제거하지 않고 확인하기 위한 목적으로 설정함 
+MSG_WAITALL : 읽으려는 데이터가 buffer에 찰 때까지 대기함 flags의 값이 0이면 일반 데이터를 수신하며, => read(sockfd, buf, len)을 호출한 것과 같습니다.
+
+3) bind 오류 해결 방법 : netstat -lntp에 들어가서 해당 포트의 pid를 알아낸 후, kill pidnumber를 해준다.
+
+4) server도 입력가능하게 하려면
+for (j = 0; j < num_user; j++)
+	send(clisock_list[j], buf, nbyte, 0);
+이렇게 해보아요!
+
+<코드 바꿔야 하는 것>
+글자색 원상복귀
+타인의 질문이 접수되면 내가 적고 있던 질문이 삭제되는 부분 수정하기
